@@ -2153,7 +2153,7 @@ setInterval(() => {
       .getDAILYAPY_T()
       .call()
       .then((res) => {
-        $("#DAILYAPY_T").html(`Daily<span>${res / 10}%</span>`);
+        $("#DAILYAPY_T").html(`Daily<span>${res}%</span>`);
       });	
 
     contract.methods
@@ -2167,7 +2167,7 @@ setInterval(() => {
       .getAPY_T()
       .call()
       .then((res) => {
-        $("#APY_T").html(`APR<span>${res / 10}%</span>`);
+        $("#APY_T").html(`APR<span>${res}%</span>`);
       });
 
     contract.methods
