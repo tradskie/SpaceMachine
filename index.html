@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="og:locale" content="en-US" />
+    <meta name="og:site_name" content="The Space Port Machine" />
+    <meta name="og:title" content="The Space Port Machine" />
+    <meta name="og:description" content="The Space Port Machine" />
+
+    <title>The Space Port Machine</title>
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/style1.css" />
+    <link rel="stylesheet" href="assets/css/styleNew.css" />
+
+    <link rel="stylesheet" href="assets/css/iziToast.min.css" />
+
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/icofont/icofont.min.html" rel="stylesheet" />
+
+    <!-- Favicons -->
+    <link href="assets/img/logo.png" rel="icon" />
+  </head>
+
+  <style>
+    /* Style The Dropdown Button */
+    .dropbtn {
+      color: #007bff;
+      background: #f4c444;
+      border-radius: 4px;
+      margin-left: 35px;
+      margin-bottom: 5px;
+      height: 37px;
+      max-width: 120px;
+      min-width: 120px;
+      font-weight: 500;
+      right: 20px;
+      position: relative;
+  }
+    
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #000000a3;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      text-align: center;
+    }
+    
+    /* Links inside the dropdown */
+    .dropdown-content a {
+      color: rgb(255, 255, 255);
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {background-color: #212429}
+    
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    .dropdown:hover .dropbtn {
+      color: #007bff;
+      background: #bb9d4b;
+      border-radius: 4px;
+      margin-left: 35px;
+      height: 37px;
+      max-width: 120px;
+      min-width: 120px;
+      font-weight: 500;
+      right: 20px;
+      position: relative;
+    }
+    </style>
+
+  <body>
+    <!-- Video -->
+    <video autoplay muted loop id="myVideo">
+      <source src="./assets/img/Space.mp4" type="video/mp4" />
+    </video>
+
+    <!-- Header -->
+    <div class="bg"></div>
+    <header class="header">
+      <div class="container">
+        <div class="header__inner">
+          <table width="100%" border="0" cellspacing="10" cellpadding="10">
+            <tbody>
+              <tr>
+                <td align="left">
+                  <img
+                    height="80px"
+                    width="80px"
+                    src="assets/img/logo.png"
+                    alt=""
+                  />
+                </td>
+                <td align="right">
+                  <button class="header__btn">
+                    <a
+                      href="https://t.me/SpaceEcosystem"
+                      target="_blank"
+                      class=""
+                      data-close="true"
+                      >Telegram</a
+                    >
+                  </button>
+                  <div class="dropdown">
+                    <button class="dropbtn"><img class="nav-logo" id="logo" alt="" src="assets/img/OreToken1.png">Projects</button>
+                    <div class="dropdown-content">
+                      <a href="https://lottery.spaceprojects.online/"><img class="nav-logo" id="logo" alt="" src="assets/img/lottery.svg">Space Lottery</a>
+                      <a href="https://spacefield.spaceprojects.online/?ref=0x083afc30588384ed9de4cd23c5035a34f0f7a6e1"><img class="nav-logo" id="logo" alt="" src="assets/img/OreToken1.png">Space Field</a>
+                      <a href="https://spaceminer.spaceprojects.online?ref=0x7ec5c8753ed76a517a5c48de14f489f334b33ed2"><img class="nav-logo" id="logo" alt="" src="assets/img/Space-logo-Orange.svg">Space Miner</a>
+                      <a href="https://dao.spaceprojects.online/dashboard"><img class="nav-logo" id="logo" alt="" src="assets/img/Space-logo-Orange.svg">Space Dao</a>
+                    </div>
+                  </div>
+                  <button class="header__btn">
+                    <a
+                      href="https://bscscan.com/address/0x83e36e50e70153a8b018569136ff25f35782201b#code"
+                      target="_blank"
+                      class=""
+                      data-close="true"
+                      >Contract</a
+                    >
+                  </button>
+                  <button class="header__btn">
+                    <a href="" target="_blank" class="" data-close="true"
+                      >Whitepaper</a
+                    >
+                  </button>
+                  <button
+                    class="header__btn"
+                    id="connect-btn"
+                    onclick="Connect()"
+                  >
+                    Connect wallet
+                  </button>
+                </td>
+              </tr>
+              <tr></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </header>
+    <main class="main">
+      <div class="container">
+        <div id="launch-time"></div>
+        <main class="main text-white">
+          <div class="container">
+            <div class="main__inner">
+              <div class="main__inner-body">
+                <div class="main__plan-item-i">
+                  <div class="main__body-plan main">
+                    <div class="main-card-header">
+                      <div class="main__plan-title-i">
+                        <h2 class="align-center">
+                          The
+                          <strong class="busd" style="color: #f4c444"
+                            >Space Port Machine</strong
+                          >
+                          Game
+                          <span
+                            >Stake
+                            <strong class="busd" style="color: #f4c444"
+                              >SPO/BNB LP</strong
+                            >
+                            and earn daily staking rewards</span
+                          >
+                          <span
+                            >Stake
+                            <strong class="busd" style="color: #f4c444"
+                              >Meteorite</strong
+                            >
+                            and earn daily staking rewards</span
+                          >
+                        </h2>
+                      </div>
+                    </div>
+                    <div class="main-card-info mobile-space">
+                      <div class="row clearfix">
+                        <div class="col-xs-6 col-sm-12 col-md-12 col-lg-12">
+                          <h6 class="align-center" style="color: #ffffff">
+                            MTR PRICE
+                          </h6>
+                          <div class="align-center">
+                            <h2 style="color: #f4c444">
+                              <span id="token-priceM">0.00 USD</span>
+                            </h2>
+                          </div>
+                        </div>
+                        <br /><br /><br /><br />
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                          <h6 class="align-center" style="color: #ffffff">
+                            Total Supply
+                          </h6>
+                          <div class="align-center">
+                            <h2 style="color: #f4c444">
+                              <span id="limit-supply">...</span>
+                            </h2>
+                          </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                          <h6 class="align-center" style="color: #ffffff">
+                            Circulating Supply
+                          </h6>
+                          <div class="align-center">
+                            <h2 style="color: #f4c444">
+                              <span id="total-supply">...</span>
+                            </h2>
+                          </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                          <h6 class="align-center" style="color: #ffffff">
+                            Available Supply
+                          </h6>
+                          <div class="align-center">
+                            <h2 style="color: #f4c444">
+                              <span id="available-supply">...</span>
+                            </h2>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="main__plan-item">
+                  <div class="main__body-plan">
+                    <h2 class="main__plan-title-i">
+                      MINT $MTR
+                      <span
+                        >Mint
+                        <strong class="busd" style="color: #f4c444"
+                          >MTR
+                        </strong>
+                        by staking your
+                        <strong class="busd" style="color: #f4c444"
+                          >SPO/BNB LP
+                        </strong>.</span
+                      >
+                      <span>You can stake as many times as you want.</span>
+                      <span
+                        >You cannot unstake your
+                        <strong class="busd" style="color: #f4c444"
+                          >SPO/BNB LP
+                        </strong></span
+                      >
+                    </h2>
+                    <br />
+                    <div class="info__plan-box">
+					  <div class="main__plan-txt" id="DAILYAPY_M">
+                        Daily<span>...</span>
+                      </div>
+                      <div class="main__plan-txt" id="APY_M">
+                        APR<span>...</span>
+                      </div>
+                      <div class="main__plan-txt" id="user-BUSD-staked">
+                        My Stake<span>...</span>
+                      </div>
+                      <div class="main__plan-txt" id="total-BUSD-staked">
+                        Total Staked<span>...</span>
+                      </div>
+                    </div>
+                    <br /><br /><br /><br /><br /><br /><br />
+                    <table width="100%">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div class="main__total-number-i"></div>
+                          </td>
+                          <td align="right">
+                            <a
+                              href="https://pancakeswap.finance/add/BNB/0x3b56a620d8a4f68049964CfFe674Da9174193bC2"
+			      target="_blank"
+			      class=""
+			      data-close="true"
+			       >
+                              <button class="main__unstake-btn">
+                                Add SPO/BNB LP
+                              </button>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <br />
+                    <table width="100%">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div class="main__plan-txt">$MTR Minted</div>
+                          </td>
+                          <td rowspan="2" align="right" valign="middle">
+                            <button class="main__claim-btn" id="claimM">
+                              CLAIM
+                            </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="main__plan-txt">
+                              <span id="user-unClaimed-M">0.00</span>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <br />
+
+                    <!-- ---------------- -->
+
+                    <table width="100%">
+                      <tbody>
+                        <tr>
+                          <td align="center" style="color: #f4c444">
+                            Approve
+                            <strong class="busd" style="color: #f4c444"
+                              >SPO/BNB LP
+                            </strong>
+                            spend
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="input-group">
+                      <input
+                        type="number"
+                        min="10"
+                        step="10"
+                        class="form-control"
+                        placeholder="Enter Amount"
+                        id="input-approve"
+                      />
+                      <div class="input-group-append">
+                        <div class="st-container">
+                          <span
+                            ><button
+                              class="main__plan-btn"
+                              onclick="approveBUSD()"
+                            >
+                              APPROVE
+                            </button></span
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- ---------------- -->
+
+                    <table width="100%">
+                      <tbody>
+                        <tr>
+                          <td align="center" style="color: #f4c444">
+                            No Minimum Amount.
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="input-group">
+                      <input
+                        type="number"
+                        min="10"
+                        step="10"
+                        class="form-control"
+                        placeholder="Enter Amount"
+                        id="input-busd"
+                      />
+                      <div class="input-group-append">
+                        <div class="st-container">
+                          <span
+                            ><button
+                              class="main__plan-btn"
+                              onclick="SetMaxBUSD()"
+                            >
+                              MAX
+                            </button></span
+                          >
+                        </div>
+                        <div class="st-container">
+                          <span
+                            ><button class="main__plan-btn" onclick="stakeM()">
+                              STAKE
+                            </button></span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <table width="100%">
+                      <tbody>
+                        <tr>
+                          <td align="center" style="color: #f4c444">
+                            Wallet Balance:
+                            <span id="user-BUSD-balance-1">...</span>
+                            <strong class="busd" style="color: #f4c444"
+                              >SPO/BNB LP
+                            </strong>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <!-- ---------------- -->
+                  </div>
+                </div>
+                <div class="main__plan-item">
+                  <div class="main__body-plan">
+                    <h2 class="main__plan-title-i">
+                      STAKE $MTR
+                      <span
+                        >Stake
+                        <strong class="busd" style="color: #f4c444"
+                          >MTR
+                        </strong>
+                        to earn more
+                        <strong class="busd" style="color: #f4c444"
+                          >MTR
+                        </strong>.</span
+                      >
+                      <span>You can stake as many times as you want.</span>
+                      <span
+                        >You can unstake your
+                        <strong class="busd" style="color: #f4c444"
+                          >MTR
+                        </strong>
+                        after 7 days.</span
+                      >
+                    </h2>
+                    <br />
+                    <div class="info__plan-box">
+					  <div class="main__plan-txt" id="DAILYAPY_T">
+                        Daily<span>...</span>
+                      </div>
+                      <div class="main__plan-txt" id="APY_T">
+                        APR<span>...</span>
+                      </div>
+                      <div class="main__plan-txt" id="user-token-staked">
+                        My Stake<span>...</span>
+                      </div>
+                      <div class="main__plan-txt" id="total-token-staked">
+                        Total Staked<span>...</span>
+                      </div>
+                    </div>
+                    <br /><br /><br /><br /><br /><br /><br />
+
+                    <table width="100%">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div
+                              class="main__total-number-i"
+                              id="time-tounstake"
+                            ></div>
+                          </td>
+                          <td align="right">
+                            <button class="main__unstake-btn" id="unstake">
+                              UNSTAKE
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <br />
+                    <table width="100%">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div class="main__plan-txt">$MTR Earned</div>
+                          </td>
+                          <td rowspan="2" align="right" valign="middle">
+                            <button class="main__claim-btn" id="claimT">
+                              CLAIM
+                            </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="main__plan-txt">
+                              <span id="user-unClaimed-T">0.00</span>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <br />
+                    <table width="100%">
+                      <tbody>
+                        <tr>
+                          <td align="center" style="color: #f4c444">
+                            There is no minimum to stake.
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="input-group">
+                      <input
+                        type="number"
+                        min="10"
+                        step="10"
+                        class="form-control"
+                        placeholder="Enter Amount"
+                        id="input-2"
+                      />
+                      <div class="input-group-append">
+                        <div class="st-container">
+                          <span
+                            ><button
+                              class="main__plan-btn"
+                              onclick="SetMaxSUPERAPE()"
+                            >
+                              MAX
+                            </button></span
+                          >
+                        </div>
+                        <div class="st-container">
+                          <span
+                            ><button
+                              class="main__plan-btn"
+                              onclick="stakeT('#input-2')"
+                            >
+                              STAKE
+                            </button></span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <table width="100%">
+                      <tbody>
+                        <tr>
+                          <td align="center" style="color: #f4c444">
+                            Wallet Balance:
+                            <span id="user-token-balance-1">...</span>
+                            <strong>$MTR </strong>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!--
+                <div class="main__plan-item">
+                  <div class="main__body-plan">
+                    <h2 class="main__plan-title-a">
+                      CLAIM AIRDROP
+                      <span>Complete the Weekly Quest</span>
+                      <span
+                        >to receive 100
+                        <strong class="busd" style="color: #f4c444"
+                          >MTR
+                        </strong>
+                        Airdrop</span
+                      >
+                    </h2>
+                    <div
+                      class="info__plan-box"
+                      style="padding-top: 10px; margin-top: 22px"
+                    >
+                      <div class="main__plan-txt" id="airdrop-c-1">
+                        Active Stake of atleast ...<strong>SPO/BNB LP </strong
+                        ><span>❌</span>
+                      </div>
+                      <div class="main__plan-txt" id="airdrop-c-2">
+                        7 days since the last claim<span>❌</span>
+                      </div>
+                      <div class="main__plan-txt" id="airdrop-c-3">
+                        Atleast 5 Direct Referrals<span>❌</span>
+                      </div>
+                    </div>
+                    <br /><br /><br /><br />
+
+                    <table width="100%">
+                      <tbody>
+                        <tr>
+                          <td align="center">
+                            <div class="main__total-txt">
+                              Global Airdrop Available
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td align="center">
+                            <div
+                              class="main__total-number"
+                              id="available-airdrop"
+                            >
+                              0.00
+                            </div>
+                          </td>
+                        </tr>
+                        <br /><br /><br /><br /><br />
+                        <tr>
+                          <td align="center">
+                            <button
+                              class="main__claim-btn"
+                              style="margin-top: 22px"
+                              id=""
+                            >
+                              CLAIM
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <br />
+                  </div>
+                </div>
+				-->
+                <div class="main__plan-item">
+                  <div class="main__body-plan">
+                    <h2 class="main__plan-title-s">
+                      SELL $MTR
+                      <span>Sell earned<strong class="busd" style="color: #f4c444"
+                          >MTR
+                        </strong>tokens.</span>
+                      <span>No Sell Limit.</span>
+                      <span
+                        >Earn
+                        <strong class="busd" style="color: #f4c444"
+                          >SPO/BNB LP
+                        </strong></span
+                      >
+                    </h2>
+                    <br />
+                    <div class="info__plan-box">
+                      <div class="main__plan-txt" id="total-sold-today">
+                        Sold Today<span>...</span>
+                      </div>
+                      <div class="main__plan-txt" id="time-tonextday">
+                        Reset in<span>...</span>
+                      </div>
+                    </div>
+                    <br /><br /><br /><br /><br /><br />
+                    <table width="100%">
+                      <tbody>
+                        <tr>
+                          <td align="center">
+                            <div class="main__total-txt">1 $MTR ≈</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td align="center">
+                            <div class="main__total-number" id="token-price">
+                              0.00
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td align="center">
+                            <div class="main__total-number-i" id="">
+                              <strong>SPO/BNB LP </strong>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <br />
+                    <div class="main__plan-txt">
+                      You will get
+                      <h3 id="sell-calc">0.00 <strong>SPO/BNB LP </strong></h3>
+                    </div>
+
+                    <div class="input-group">
+                      <input
+                        type="number"
+                        min="10"
+                        step="10"
+                        class="form-control"
+                        placeholder="Enter Amount"
+                        id="input-3"
+                      />
+                      <div class="input-group-append">
+                        <div class="st-container">
+                          <span
+                            ><button
+                              class="main__plan-btn"
+                              onclick="SetMaxSUPERAPEToSell()"
+                            >
+                              MAX
+                            </button></span
+                          >
+                        </div>
+                        <div class="st-container">
+                          <span
+                            ><button
+                              class="main__plan-btn"
+                              onclick="sell('#input-3')"
+                            >
+                              SELL
+                            </button></span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <table width="100%" border="0">
+                      <tbody>
+                        <tr>
+                          <td align="center" style="color: #f4c444">
+                            Wallet Balance:
+                            <span id="user-token-balance-2">...</span>
+                            <strong>$MTR </strong>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <div class="main__inner-body">
+                <div class="main__plan-item-i">
+                  <div class="main__body-plan">
+                    <div class="main__game">
+                      <h2 class="main__game-title">PROJECT GUIDE</h2>
+		      <strong class="busd" style="color: #f4c444">Note: </strong> This is an experimental project! Funds that are deposited cannot be withdrawn, however the project will pay daily dividends and
+                  referrals rewards for the life of the contract. Please use at your own risk. Remember, never invest more than you can afford to lose
+                  and always do your own research!<br /><br /> 	                       
+		  
+		  The <strong class="busd" style="color: #f4c444"
+                          >Meteorite
+                        </strong>
+                        Space Port Machine Token - 0x83E36e50e70153A8b018569136fF25f35782201B </b
+                      ><br />
+		      <strong class="busd" style="color: #f4c444"
+                          >SPO/BNB
+                        </strong>
+                        LP Token - 0x434cB47c13D472da45aF9e9ff4FfB5b9D1B2F814 </b
+                      ><br />	  
+                      <b>Official Launch Date: 14:00 UTC 03/24/22! </b
+                      ><br /><br />
+                      The value of
+                      <strong class="busd" style="color: #f4c444">MTR </strong>
+                      token will rise as more users invest
+                      <strong class="busd" style="color: #f4c444"
+                        >SPO/BNB LP </strong
+                      >into the project.<br /><br />
+                      1. Stake
+                      <strong class="busd" style="color: #f4c444"
+                        >SPO/BNB LP
+                      </strong>
+                      and earn Daily Staking Rewards in
+                      <strong class="busd" style="color: #f4c444">MTR </strong>
+                      token (7% per day).You can claim your
+                      <strong class="busd" style="color: #f4c444">MTR </strong>
+                      rewards anytime. You cannot unstake your staked
+                      <strong class="busd" style="color: #f4c444"
+                        >SPO/BNB LP </strong
+                      >.<br />
+                      • You will earn
+                      <strong class="busd" style="color: #f4c444">MTR </strong>
+                      tokens as a percentage of SPO/BNB LP invested irrespective
+                      of the
+                      <strong class="busd" style="color: #f4c444">MTR </strong>
+                      Price.<br />
+                      • Investors have two options with their
+                      <strong class="busd" style="color: #f4c444">MTR </strong>
+                      tokens, you can sell them for
+                      <strong class="busd" style="color: #f4c444"
+                        >SPO/BNB LP </strong
+                      >, or you can stake them to earn more
+                      <strong class="busd" style="color: #f4c444">MTR </strong>
+                      tokens (10% per day).
+                      <strong class="busd" style="color: #f4c444">MTR </strong>
+                      staking is locked for 7 days. <br /><br />
+
+                      2. Project Terminology <br />
+                      • Total Supply : The maximum amount of
+                      <strong class="busd" style="color: #f4c444">MTR </strong>
+                      that can exist. <br />
+                      • Circulating Supply : The amount of
+                      <strong class="busd" style="color: #f4c444">MTR </strong>
+                      tokens that are currently in the investors wallets. <br />
+                      • Available Supply : (Total Supply - Cirulating Supply).
+                      <br />
+                      •
+                      <strong class="busd" style="color: #f4c444">MTR </strong>
+                      Price : (Total
+                      <strong class="busd" style="color: #f4c444"
+                        >SPO/BNB LP
+                      </strong>
+                      Balance / Available Supply). <br /><br />
+                      3. Mint
+                      <strong class="busd" style="color: #f4c444">MTR </strong>
+                      - As you claim
+                      <strong class="busd" style="color: #f4c444">MTR </strong>
+                      from minting, it is removed from the Available Supply and
+                      added to the Circulating Supply. <br /><br />
+                      4. Sell
+                      <strong class="busd" style="color: #f4c444">MTR </strong>
+                      - As you sell
+                      <strong class="busd" style="color: #f4c444">MTR </strong>,
+                      it is removed from the Circulating Supply and added to the
+                      Available Supply. <br /><br />
+                      5. Investors can also choose to sell their
+                      <strong class="busd" style="color: #f4c444">MTR </strong>
+                      tokens for profit or hold on to it since it will have a usecase
+                      for layer 3. Join our telegram group for more info!<br />
+                    </div>
+	             		  
+                    <br />
+                    <div class="main__referral-link">
+                      <div class="main__referral-header">
+                        <label class="main__referral-label">
+                          YOUR REFERRAL LINK
+                          <input
+                            type="text"
+                            class="main__referral-input"
+                            value="..."
+                            id="ref-link"
+                          />
+                        </label>
+                        <button
+                          class="main__referral-btn"
+                          onclick="copyToClipboard('#ref-link')"
+                        >
+                          COPY
+                        </button>
+                      </div>
+                      <div class="main__referral-body">
+                        <div class="main__referral-col">
+                          <div class="main__referral-txt">
+                            Referral Earned Available
+                            <div
+                              class="main__referral-perc"
+                              id="referral-available"
+                            >
+                              ...
+                            </div>
+                          </div>
+                          <div class="main__referral-txt">
+                            Total Referral Earned
+                            <div
+                              class="main__referral-perc"
+                              id="referral-earned"
+                            >
+                              ...
+                            </div>
+                          </div>
+                          <div class="main__referral-txt">
+                            Total Referral Withdrawn
+                            <div
+                              class="main__referral-perc"
+                              id="referral-withdrawn"
+                            >
+                              ...
+                            </div>
+                          </div>
+                          <div class="main__referral-txt">
+                            Total Referrals
+                            <div
+                              class="main__referral-perc"
+                              id="total-referrals"
+                            >
+                              ...
+                            </div>
+                          </div>
+                        </div>
+                        <div class="main__referral-col">
+                          <div class="main__referral-txt">
+                            Earn
+                            <strong class="busd" style="color: #f4c444"
+                              >SPO/BNB LP
+                            </strong>
+                            by inviting people to
+                            <strong class="busd" style="color: #f4c444"
+                              >MTR
+                            </strong>
+                            Printing Machine. <br /><br />
+                            You will receive:<br /><br />
+                            3% from each level 1 referral deposits<br />
+                            2% from each level 2 referral deposits<br />
+                            1% from each level 3 referral deposits<br /><br />
+                            User has to have an active invested to earn referral
+                            rewards.<br />
+                          </div>
+                        </div>
+                      </div>
+                      <br /><br /><br />
+                      <table width="100%" border="0">
+                        <tbody>
+                          <tr>
+                            <td align="center">
+                              <button
+                                class="main__wref-btn"
+                                id="withdraw-referral-btn"
+                              >
+                                WITHDRAW REFERRAL EARNINGS
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="main__footer-stake" id="user-deposits"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <div class="footer">
+          <div class="container">
+            <div class="footer__inner">
+              <table width="100%" border="0">
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div id="preloader">
+          <br /><br />
+          <table width="100%" height="100%" border="1">
+            <tbody>
+              <tr>
+                <td align="center" valign="middle">
+                  <img
+                    width="700px"
+                    height="600px"
+                    src="assets/img/logo.png"
+                    alt=""
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <script src="assets/scripts/jquery.min.js"></script>
+        <script src="assets/scripts/main.js"></script>
+        <script src="assets/scripts/web3.min.js"></script>
+        <script src="assets/scripts/index_202201191455.js"></script>
+        <script src="assets/scripts/iziToast.min.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/timer/main.js"></script>
+        <script src="assets/timer/countdown.js"></script>
+        <script src="assets/timer/time.js"></script>
+      </div>
+    </main>
+  </body>
+</html>
